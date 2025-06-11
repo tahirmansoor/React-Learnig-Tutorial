@@ -1,21 +1,27 @@
 import { useState } from "react";
 
 function Counter() {
-  let [counter, setCounter] = useState(15);
+  let [counter, setCounter] = useState(2);
 
   const addValue = () => {
+    if (counter <= 19){
     setCounter(counter + 1);
-  };
+  }
+};
 
   const removeValue = () =>{
-    setCounter(counter - 1)
+    if (counter > 0) {
+      setCounter(counter - 1);
+    }
+
   }
 
   return (
     <>
       <p> Counter value is {counter}</p>
-      <button onClick={addValue}>Add </button>
+     
       <button onClick={removeValue}>Remove {counter}</button>
+       <button onClick={addValue}>Add </button>
       <p>sdsdsd {counter}</p>
     </>
   );
