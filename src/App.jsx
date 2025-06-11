@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import Counter from './counter';
+import Card from './components/Card'
+import Header from './Header';
 
 function App() {
  
 
   return (
     <>
-    <Counter />
-    <h1>test run</h1>
+    <Header/>
+    <Card/> 
 
-    </>
+   </>
   )
 }
 
