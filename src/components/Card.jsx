@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Card = (props) => {
+const Card = (props, btnText) => {
   const cardData = [
     {
       id: "1",
@@ -59,15 +59,16 @@ let addValue = () =>{
           />
           <div className="mt-6 mb-2">
             <span className="block text-sm font-medium font-mono tracking-widest uppercase text-black-400">
-              Title
+             {props.Tahir} <br />
+             {props.Son}
             </span>
             <h2 className="text-xl font-semibold tracking-wide">
               {card.title}
             </h2>
           </div>
           <p className="text-black-400">{card.description}</p>
-          <button className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition" onClick={addValue}> Add to Cart </button>
-          <p>{counter}</p>
+          <button className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition" onClick={addValue}> {props.btnText} </button>
+               
         
         </div>
       ))}

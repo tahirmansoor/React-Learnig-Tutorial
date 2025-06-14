@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import Card from './components/Card'
+import Card from './components/Card';
 import Header from './Header';
+import Colors from './components/ColorBg';
 
 function App() {
  
@@ -9,7 +10,8 @@ function App() {
   return (
     <>
     <Header/>
-    <Card/> 
+    <Colors />
+    <Card Tahir="Props Should be here!" btnText="Purchase Now" /> 
 
    </>
   )
