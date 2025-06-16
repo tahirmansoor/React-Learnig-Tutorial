@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const Card = (props, btnText) => {
+const Card = ({ Tahir, Son, btnText, onAddToCart }) => {
   const cardData = [
     {
-      id: "1",
+      id: 1,
       title: "Nature View",
       image:
         "https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=600",
@@ -15,8 +15,7 @@ const Card = (props, btnText) => {
       title: "Mountain Peaks",
       image:
         "https://images.pexels.com/photos/1151440/pexels-photo-1151440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      description:
-        "Towering mountains that inspire adventure and exploration.",
+      description: "Towering mountains that inspire adventure and exploration.",
     },
     {
       id: 3,
@@ -36,15 +35,6 @@ const Card = (props, btnText) => {
     },
   ];
 
-
-
- let [counter, setCounter ]= useState(0);
-let addValue = () =>{
-  setCounter (counter + 1);
-}
-
-
-
   return (
     <div className="container mx-auto px-4 flex gap-4 flex-wrap mt-10">
       {cardData.map((card) => (
@@ -58,18 +48,21 @@ let addValue = () =>{
             className="object-cover object-center w-full rounded-md h-72 bg-gray-500"
           />
           <div className="mt-6 mb-2">
-            <span className="block text-sm font-medium font-mono tracking-widest uppercase text-black-400">
-             {props.Tahir} <br />
-             {props.Son}
+            <span className="block text-sm font-medium font-mono tracking-widest uppercase text-gray-500">
+              {Tahir} <br />
+              {Son || ""}
             </span>
             <h2 className="text-xl font-semibold tracking-wide">
               {card.title}
             </h2>
           </div>
-          <p className="text-black-400">{card.description}</p>
-          <button className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition" onClick={addValue}> {props.btnText} </button>
-               
-        
+          <p className="text-gray-600">{card.description}</p>
+          <button
+            className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition"
+            onClick={onAddToCart}
+          >
+            {btnText}
+          </button>
         </div>
       ))}
     </div>
