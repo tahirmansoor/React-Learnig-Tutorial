@@ -1,50 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useCart } from "../Context/CartContext";
 
 const Header = () => {
+  const { cartCount } = useCart();
+
   return (
-    <header className="bg-white shadow-md py-4 px-6">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Left: Logo */}
-        <div className="text-xl font-bold text-blue-600">
+    <header className="fixed top-0 left-0 w-full bg-white border-b border-gray-200 shadow-sm z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+        {/* Logo */}
+        <div className="text-2xl font-extrabold text-indigo-600 tracking-wide">
           <Link to="/">MyWatches</Link>
         </div>
 
-        {/* Center: Navigation */}
-        <nav className="hidden md:flex gap-8 font-medium text-gray-700">
-          <Link to="/" className="hover:text-blue-600 transition">
+        {/* Navigation */}
+        <nav className="hidden md:flex gap-6 font-medium text-gray-700">
+          <Link to="/" className="hover:text-indigo-600 transition">
             Home
           </Link>
-          <Link to="/services" className="hover:text-blue-600 transition">
+          <Link to="/services" className="hover:text-indigo-600 transition">
             Products
           </Link>
-          <Link to="/contact" className="hover:text-blue-600 transition">
+          <Link to="/contact" className="hover:text-indigo-600 transition">
             Contact
           </Link>
-          <Link to="/about" className="hover:text-blue-600 transition">
+          <Link to="/about" className="hover:text-indigo-600 transition">
             About
           </Link>
         </nav>
 
-        {/* Right: Auth Buttons */}
-        <div className="hidden md:flex gap-4">
+        {/* Auth & Cart */}
+        <div className="hidden md:flex items-center gap-4">
           <Link
             to="/login"
-            className="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition"
+            className="px-4 py-1.5 text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50 transition"
           >
             Login
           </Link>
           <Link
             to="/signup"
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            className="px-4 py-1.5 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
           >
             Sign Up
           </Link>
 
-          <button className="relative">
-            <ShoppingCartIcon style={{ fontSize: 26 }} className="text-white" />
-            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full"></span>
+          {/* Cart Icon */}
+          <button className="relative text-indigo-600">
+            <ShoppingCartIcon style={{ fontSize: 26 }} />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
       </div>

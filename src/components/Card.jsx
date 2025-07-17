@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Card = ({ Tahir, Son, btnText, onAddToCart }) => {
+const Card = ({ smallText, Son, btnText, onAddToCart }) => {
   const cardData = [
     {
       id: 1,
@@ -38,32 +39,36 @@ const Card = ({ Tahir, Son, btnText, onAddToCart }) => {
   return (
     <div className="container mx-auto px-4 flex gap-4 flex-wrap mt-10">
       {cardData.map((card) => (
-        <div
-          key={card.id}
-          className="max-w-xs p-6 rounded-md shadow-md bg-sky-100"
-        >
-          <img
-            src={card.image}
-            alt={card.title}
-            className="object-cover object-center w-full rounded-md h-72 bg-gray-500"
-          />
-          <div className="mt-6 mb-2">
-            <span className="block text-sm font-medium font-mono tracking-widest uppercase text-gray-500">
-              {Tahir} <br />
-              {Son || ""}
-            </span>
-            <h2 className="text-xl font-semibold tracking-wide">
-              {card.title}
-            </h2>
-          </div>
-          <p className="text-gray-600">{card.description}</p>
-          <button
-            className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition"
-            onClick={onAddToCart}
+        
+          <div
+            key={card.id}
+            className="max-w-xs p-6 rounded-md shadow-md bg-sky-100"
           >
-            {btnText}
-          </button>
-        </div>
+            <Link to={`/card/${card.id}`} key={card.id}>
+            <img
+              src={card.image}
+              alt={card.title}
+              className="object-cover object-center w-full rounded-md h-72 bg-gray-500"
+            />
+            <div className="mt-6 mb-2">
+              <span className="block text-sm font-medium font-mono tracking-widest uppercase text-gray-500">
+                {smallText} <br />
+                {Son || ""}
+              </span>
+              <h2 className="text-xl font-semibold tracking-wide">
+                {card.title}
+              </h2>
+            </div>
+            <p className="text-gray-600">{card.description}</p>
+              </Link>
+            <button
+              className="bg-slate-800 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700 transition"
+              onClick={onAddToCart}
+            >
+              {btnText}
+            </button>
+          </div>
+      
       ))}
     </div>
   );

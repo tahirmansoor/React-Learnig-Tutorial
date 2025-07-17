@@ -2,10 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 
-const Layout = () => {
+const Layout = ({ cartCount }) => {
   return (
     <>
-      <Header />
+      <Header cartCount={cartCount} />
       <main className="pt-20">
         <Outlet /> {/* Renders the child route component */}
       </main>

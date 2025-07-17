@@ -1,92 +1,107 @@
-import { Form } from "react-router-dom";
+import React, { useState } from 'react';
 
-export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://robohash.org/you.png?size=200x200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
+const Contact = () => {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Message submitted!');
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
-    <div id="contact">
-      <div>
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          key={contact.avatar}
-          src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
-          }
+          className="mx-auto h-10 w-auto"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+          alt="Your Company"
         />
+        <h2 className="mt-6 text-center text-2xl font-bold tracking-tight text-gray-900">
+          Contact Us
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          We'd love to hear from you!
+        </p>
       </div>
 
-      <div>
-        <h1>
-          {contact.first || contact.last ? (
-            <>
-              {contact.first} {contact.last}
-            </>
-          ) : (
-            <i>No Name</i>
-          )}{" "}
-          <Favorite contact={contact} />
-        </h1>
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-900">
+              Your Name
+            </label>
+            <div className="mt-2">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                value={form.name}
+                onChange={handleChange}
+                className="block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              />
+            </div>
+          </div>
 
-        {contact.twitter && (
-          <p>
-            <a
-              target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+              Email address
+            </label>
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className="block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-900">
+              Message
+            </label>
+            <div className="mt-2">
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                value={form.message}
+                onChange={handleChange}
+                className="block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              ></textarea>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {contact.twitter}
-            </a>
-          </p>
-        )}
+              Send Message
+            </button>
+          </div>
+        </form>
 
-        {contact.notes && <p>{contact.notes}</p>}
-
-        <div>
-          <Form action="edit">
-            <button type="submit">Edit</button>
-          </Form>
-          <Form
-            method="post"
-            action="destroy"
-            onSubmit={(event) => {
-              if (
-                !confirm(
-                  "Please confirm you want to delete this record."
-                )
-              ) {
-                event.preventDefault();
-              }
-            }}
-          >
-            <button type="submit">Delete</button>
-          </Form>
-        </div>
+        <p className="mt-10 text-center text-sm text-gray-500">
+          Need help?
+          <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+            Visit Support
+          </a>
+        </p>
       </div>
     </div>
   );
-}
+};
 
-function Favorite({ contact }) {
-  const favorite = contact.favorite;
-  return (
-    <Form method="post">
-      <button
-        name="favorite"
-        value={favorite ? "false" : "true"}
-        aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
-        }
-      >
-        {favorite ? "★" : "☆"}
-      </button>
-    </Form>
-  );
-}
+export default Contact;
